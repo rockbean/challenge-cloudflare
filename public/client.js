@@ -106,13 +106,26 @@
     clearError();
     const result = await postJSON("/api/verify", { token: token });
     if (!result.ok || !result.data || result.data.ok !== true) {
+      const data = result.data || {};
+      const codes = Array.isArray(data.codes) && data.codes.length > 0
+        ? " [" + data.codes.join(", ") + "]"
+        : "";
       showError(
-        (result.data && result.data.error) || "Verification failed (HTTP " + result.status + ")."
+        (data.error ? friendlyError(data.error, data.codes) : "Verification failed (HTTP " + result.status + ")") + codes
       );
       return;
     }
     showView("passed");
   };
+
+  function friendlyError(code, codes) {
+    if (Array.isArray(codes)) {
+      if (codes.includes("invalid-input-secret")) return "Server misconfiguration: TURNSTILE_SECRET is wrong or missing.";
+      if (codes.includes("invalid-input-response")) return "Challenge token rejected. Please retry.";
+      if (codes.includes("timeout-or-duplicate") || codes.includes("expired-token")) return "Challenge expired. Please retry.";
+    }
+    return code || "Verification failed.";
+  }
 
   async function handleConfirmClick() {
     if (!confirmBtn) return;

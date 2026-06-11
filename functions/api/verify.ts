@@ -19,8 +19,13 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   if (!token) return jsonResponse({ ok: false, error: "missing_token" }, 400);
 
   const remoteIp = request.headers.get("cf-connecting-ip") ?? undefined;
-  const ok = await verifyTurnstile(token, env.TURNSTILE_SECRET, remoteIp);
-  if (!ok) return jsonResponse({ ok: false, error: "turnstile_failed" }, 400);
+  const result = await verifyTurnstile(token, env.TURNSTILE_SECRET, remoteIp);
+  if (!result.ok) {
+    return jsonResponse(
+      { ok: false, error: "turnstile_failed", codes: result.errorCodes },
+      400
+    );
+  }
 
   const now = Math.floor(Date.now() / 1000);
   const payload: SessionPayload = {
