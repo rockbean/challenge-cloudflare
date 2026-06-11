@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Turnstile Challenge · Cloudflare Pages</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="brand">
+        <span class="dot"></span>
+        <span class="label">Cloudflare · Turnstile</span>
+      </header>
+
+      <section id="view-challenge" class="view" aria-labelledby="challenge-title">
+        <h1 id="challenge-title">Verify you're human</h1>
+        <p class="subtitle">Solve the challenge below to continue.</p>
+        <div id="turnstile-mount" class="turnstile-mount"></div>
+        <p id="challenge-error" class="error" hidden></p>
+      </section>
+
+      <section id="view-passed" class="view" aria-labelledby="passed-title" hidden>
+        <h1 id="passed-title">You're verified</h1>
+        <p class="subtitle">Press the button to confirm.</p>
+        <button id="confirm-btn" class="primary" type="button">通过</button>
+      </section>
+
+      <section id="view-confirmed" class="view" aria-labelledby="confirmed-title" hidden>
+        <h1 id="confirmed-title" class="big-pass">pass</h1>
+      </section>
+    </main>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit" async defer></script>
+    <script src="/client.js"></script>
+  </body>
+</html>

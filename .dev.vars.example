@@ -1,0 +1,3 @@
+# Example local dev secrets — copy to `.dev.vars` (gitignored) and edit
+SESSION_SECRET=replace-me-with-a-long-random-string
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
