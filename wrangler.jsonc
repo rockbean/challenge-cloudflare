@@ -5,7 +5,8 @@
   "compatibility_flags": ["nodejs_compat"],
   "pages_build_output_dir": "./public",
   "vars": {
-    "TURNSTILE_SITE_KEY": "0x4AAAAAADihrcoeY2VlqoCh"
+    "TURNSTILE_SITE_KEY": "0x4AAAAAADihrcoeY2VlqoCh",
+    "SESSION_SECRET": "0d72471d8ac68692930c2a6b47046c23cdb92235412f3f713347069ef7ba99b4"
   },
   "observability": {
     "enabled": true
