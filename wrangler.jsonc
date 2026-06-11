@@ -5,7 +5,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "pages_build_output_dir": "./public",
   "vars": {
-    "TURNSTILE_SITE_KEY": "1x00000000000000000000AA"
+    "TURNSTILE_SITE_KEY": "0x4AAAAAADihrcoeY2VlqoCh"
   },
   "observability": {
     "enabled": true
